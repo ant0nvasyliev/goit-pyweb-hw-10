@@ -1,0 +1,59 @@
+{% extends "quotes/base.html" %}
+
+{% load extract %}
+{% load form_tags %}
+
+{% block content %}
+<div class="container mt-5">
+
+    <h1 class="text-center mb-4">Add Author and Quote</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    {% if messages %}
+                    <div>
+                        {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} text-center" role="alert">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="id_fullname" class="form-label">Full Name</label>
+                            {{ form.fullname|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_born_date" class="form-label">Born Date</label>
+                            {{ form.born_date|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_born_location" class="form-label">Born Location</label>
+                            {{ form.born_location|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_description" class="form-label">Description</label>
+                            {{ form.description|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_quote" class="form-label">Quote</label>
+                            {{ form.quote|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_tags" class="form-label">Tags (comma-separated)</label>
+                            {{ form.tags|add_class:"form-control" }}
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary w-50">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
