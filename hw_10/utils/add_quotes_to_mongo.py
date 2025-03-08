@@ -1,10 +1,11 @@
 import json
 from bson.objectid import ObjectId
+from django.conf import settings
 
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 
-uri = "mongodb+srv://anton12vasyliev:ofPpZwz5gPOCaTMA@cluster.po4pa.mongodb.net/?retryWrites=true&w=majority&appName=Cluster"
+uri = settings.MONGODB_URI
 
 client = MongoClient(uri, server_api=ServerApi('1'))
 
